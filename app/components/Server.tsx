@@ -42,6 +42,19 @@ export const Server: React.FC<QueryResult> = (props) => {
 
         return `${formattedMinutes}:${formattedSeconds}`;
     }
+    const connectTo = (connect: string | undefined) => {
+        return () => {
+            if (connect) {
+                window.prompt(`We are about to use the following Steam URI to connect to the server
+
+steam://connect/${connect}
+
+Your browser may ask you to allow us to do this.
+If it does not allow this, here is the connect string.`, `connect ${connect};`);
+                window.open(`steam://connect/${connect}`);
+            }
+        }
+    }
     return (
         <div className='rounded-lg border dark:bg-gray-700 bg-gray-300 text-black dark:text-white font-bold sm:shadow w-full max-w-md'>
             <div className="flex-col space-y-1.5 p-6 dark:bg-gray-300 bg-gray-700 dark:text-black text-white px-4 py-3 flex items-center justify-between">
@@ -69,7 +82,7 @@ export const Server: React.FC<QueryResult> = (props) => {
                     <span className='font-medium'>Map: {props.map || 'MAPNAME'}</span>
                 </div>
                 <div className='mt-4 text-sm text-white hidden sm:block'>
-                    <button className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded'>
+                    <button onClick={connectTo(props.connect)} className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded'>
                         Connect
                     </button>
                 </div>
