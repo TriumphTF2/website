@@ -7,7 +7,12 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
+import { Navbar } from "~/components/Navbar";
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const pages = [
+    { href: "/", label: "Home" }
+  ]
   return (
     <html lang="en">
       <head>
@@ -16,7 +21,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-gray-100 text-black dark:bg-gray-900 dark:text-white">
+        <Navbar siteTitle="TriumphTF2" items={pages} />
         {children}
         <ScrollRestoration />
         <Scripts />

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (min-width: 768px) {
+    .md\:space-x-8-force {
+        --tw-space-x-reverse: 1;
+        margin-right: calc(2rem /* 32px */ * var(--tw-space-x-reverse));
+        margin-left: calc(2rem /* 32px */ * calc(1 - var(--tw-space-x-reverse)));
+    }
+}
