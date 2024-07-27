@@ -1,6 +1,13 @@
-# Welcome to Remix!
-
+# TriumphTF2 Website
+## Powered by Remix and GameDig
 - 📖 [Remix docs](https://remix.run/docs)
+- 🎮 [GameDig](https://github.com/gamedig/node-gamedig)
+
+## Getting Started
+
+```shellscript
+npm install
+```
 
 ## Development
 
