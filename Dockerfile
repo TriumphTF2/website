@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port
-EXPOSE 80
+EXPOSE 3000
 
 # Start the server
 ENTRYPOINT [ "npm", "run", "start" ]
