@@ -51,4 +51,5 @@ jobs:
             port: ${{ secrets.PORT }}
             script: |
               cd /prod/services/web/triumph/website
+              docker compose down
               docker compose up -d
