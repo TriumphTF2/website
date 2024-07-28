@@ -1,17 +1,33 @@
+import clsx from "clsx";
+import { PreventFlashOnWrongTheme, ThemeProvider, useTheme } from "remix-themes";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import "./tailwind.css";
 
+import { themeSessionResolver } from "./sessions.server";
+
 import { Navbar } from "~/components/Navbar";
+import { LoaderFunctionArgs } from "@remix-run/node";
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const { getTheme } = await themeSessionResolver(request)
+  return {
+    theme: getTheme(),
+  }
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const data = useLoaderData<typeof loader>();
   const pages = [
-    { href: "/", label: "Home" }
+    { href: "/", label: "Home" },
+    { href: "//bans.triumphtf2.com", label: "Bans" },
+    { href: "//leaderboards.triumphtf2.com", label: "Leaderboards" },
   ]
   return (
     <html lang="en">
@@ -21,7 +37,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-gray-100 text-black dark:bg-gray-900 dark:text-white">
+      <body>
         <Navbar siteTitle="TriumphTF2" items={pages} />
         {children}
         <ScrollRestoration />
@@ -31,6 +47,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+export function App() {
+  const data = useLoaderData<typeof loader>();
+  const [theme] = useTheme();
+  return
+}
+
+export default function AppWithProviders() {
+  const data = useLoaderData<typeof loader>()
+  return (
+    <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
+      <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
+      <Outlet></Outlet>
+    </ThemeProvider>
+  )
 }
