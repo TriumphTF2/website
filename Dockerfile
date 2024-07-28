@@ -3,6 +3,7 @@ LABEL maintainer="Shigbeard <shigbeard@triumphtf2.com>"
 LABEL version="1.0"
 LABEL description="Dockerfile for the TriumphTF2 website"
 
+ENV NODE_ENV=production
 
 # Set the working directory
 WORKDIR /app

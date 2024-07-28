@@ -6,8 +6,8 @@ import { Server, ServerSkeleton } from "~/components/Server";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "TriumphTF2" },
+    { name: "description", content: "TriumphTF2 Main Page" },
   ];
 };
 
