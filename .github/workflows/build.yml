@@ -3,6 +3,7 @@ name: Build Docker Image
 on:
     push:
         branches: [ "main" ]
+        paths-ignore: [ "README.md", "LICENSE", "CONTRIBUTING.md", ".github/**" ]
 
 env:
   REGISTRY: ghcr.io
@@ -49,6 +50,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             port: ${{ secrets.PORT }}
+            script_stop: true
             script: |
               cd /prod/services/web/triumph/website
               docker compose pull
