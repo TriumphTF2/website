@@ -117,6 +117,72 @@ If it does not allow this, here is the connect string.`, `connect ${connect};`);
 };
 
 export const ServerSkeleton: React.FC = () => {
-
-    return ( <></> )
+    const randomUsername = () => {
+        const adjectives = ['Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange', 'Black', 'White', 'Gray', 'Brown'];
+        const nouns = ['Dog', 'Cat', 'Bird', 'Fish', 'Horse', 'Cow', 'Pig', 'Sheep', 'Goat', 'Chicken'];
+        return `${adjectives[Math.floor(Math.random() * adjectives.length)]} ${nouns[Math.floor(Math.random() * nouns.length)]}`;
+    }
+    const players = [] as string[];
+    for (let i = 0; i < 8; i++) {
+        players.push(randomUsername())
+    }
+    return (
+        <div className='server-placeholder rounded-lg border dark:bg-gray-700 bg-gray-300 text-black dark:text-white font-bold sm:shadow w-full max-w-md'>
+            <div className="flex-col space-y-1.5 p-6 dark:bg-gray-300 bg-gray-700 dark:text-black text-white px-4 py-3 flex items-center justify-between">
+                <div className='flex items-center gap-2'>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-5 h-5"
+                    >
+                        <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
+                        <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
+                        <line x1="6" x2="6.01" y1="6" y2="6"></line>
+                        <line x1="6" x2="6.01" y1="18" y2="18"></line>
+                    </svg>
+                    <div className='text-lg font-bold'><span className='header'></span></div>
+                </div>
+                <div className='text-sm text-gray-500'>
+                    <span className='font-medium'>Map: <span className='text'></span></span>
+                </div>
+                <div className='mt-4 text-sm text-white hidden sm:block'>
+                    <button disabled className='bg-gray-500 text-white font-bold py-2 px-4 rounded'>
+                        <span className='text'></span>
+                    </button>
+                </div>
+            </div>
+            <div className='p-4'>
+                <div className='flex items-center justify-between mb-4'>
+                    <div className='font-bold'>
+                        <span className='number'></span>
+                    </div>
+                    <div className='text-sm text-gray-500'>Players Online</div>
+                </div>
+                <div className='max-h-52 overflow-y-auto'>
+                    <div className='space-y-1 px-3.5'>
+                        {players.map((_,index) => (
+                            <div key={index} className='flex items-center justify-between text-sm'>
+                                <div className='flex items-center gap-2'>
+                                    {/* <span className="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6">
+                                        <svg className='aspect-square h-full w-full' fill='none' viewBox='0 0 32 32' stroke='currentColor'>
+                                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z' />
+                                        </svg>
+                                    </span> */}
+                                    <div><span className='text' style={{ minWidth: `${Math.floor(Math.random() * (125 - 80 + 1)) + 80}px` }}></span></div>
+                                </div>
+                                <div className='text-gray-500 flex items-center'><span className='text-short'></span></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
