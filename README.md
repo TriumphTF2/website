@@ -42,6 +42,15 @@ docker build -t ghcr.io/triumph-tf2/website:latest .
 
 You should probably use a different tag than latest. You might also want to tweak the docker-compose.yml file to your liking. An example is included [here](docker-compose.yml.example).
 
+## Still to Come
+
+- [ ] Add a proper error handler page (404, etc)
+- [ ] rich embeds for discord etc
+- [ ] Database stuffs
+- [ ] Bans page
+- [ ] User Dashboard
+- [ ] Admin Dashboard
+
 ## License
 
 Haven't decided yet.
