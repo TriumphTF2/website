@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: triumph-tf2/website
+  IMAGE_NAME: triumphtf2/website
 
 jobs:
     build-and-push-image:
