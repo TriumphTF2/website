@@ -6,8 +6,10 @@
 ## Getting Started
 
 ```shellscript
-npm install
+npm install --legacy-peer-deps
 ```
+
+You need to include --legacy-peer-deps because [remix-auth-steam](https://github.com/Andreychik32/remix-auth-steam) is largely unmaintained.
 
 ## Development
 
@@ -15,6 +17,18 @@ Run the dev server:
 
 ```shellscript
 npm run dev
+```
+
+Note - For steam logins you need an API key. You can get one [here](https://steamcommunity.com/dev/apikey).
+
+## Env Variables
+
+```shellscript
+# .env
+# Required for steam login
+STEAM_API_KEY=your_steam_api_key
+# Informs the application where to redirect after login. NO TRAILING SLASH
+BASE_URL=http://localhost:5173
 ```
 
 ## Deployment

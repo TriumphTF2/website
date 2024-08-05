@@ -1,7 +1,10 @@
 import clsx from "clsx";
 import React from 'react';
-import { useLocation } from '@remix-run/react';
+import { useLocation, useNavigate } from '@remix-run/react';
 import { Theme, ThemeProvider, useTheme } from 'remix-themes';
+import type { User } from "~/auth.server"
+import { SerializeFrom } from "@remix-run/node";
+
 export interface NavbarItemProps {
     href: string;
     label: string;
@@ -10,10 +13,12 @@ export interface NavbarItemProps {
 export interface NavbarProps {
     siteTitle?: string;
     items?: NavbarItemProps[];
+    user: SerializeFrom<User> | null;
 }
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
     // Component logic goes here
+    const navigate = useNavigate();
     const currentpage = useLocation().pathname;
     const [menuOpen, setMenuOpen] = React.useState(false);
     const toggleMenu = () => {
@@ -27,7 +32,6 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
         setMenuOpen(false);
     }
     const [theme, setTheme] = useTheme();
-    console.log(theme);
     const toggleTheme = () => {
         switch (theme) {
             case Theme.LIGHT:
@@ -40,6 +44,15 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
                 setTheme(Theme.LIGHT);
                 break;
         }
+    }
+
+    const handleAuth = () => {
+        if (props.user) {
+            navigate('/auth/logout');
+            return;
+        }
+        navigate('/auth/steam');
+        return
     }
 
     return (
@@ -97,8 +110,8 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
                 <div className={profileOpen ? "w-full md:block md:w-auto md:space-x-8" : "w-full md:block md:w-auto md:space-x-8 hidden"} id="profile-menu">
                     <ul className='flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium'>
                         <li>
-                            <button type="button" className='sm:w-full sm:text-left block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'>
-                                Not Signed In - Sign In Coming Soon!
+                            <button onClick={handleAuth} type="button" className='sm:w-full sm:text-left block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'>
+                                {props.user ? props.user.nickname : 'Login'}
                             </button>
                         </li>
                     </ul>
@@ -121,3 +134,5 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
         </ThemeProvider>
     );
 };
+
+
