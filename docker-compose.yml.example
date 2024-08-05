@@ -1,0 +1,11 @@
+services:
+    triumphtf2-website:
+        image: ghcr.io/triumphtf2/website:latest
+        restart: always
+        ports:
+            - "3000:3000" # Change the first port to the port you want to use
+        environment:
+            - BASE_URL=http://localhost:3000 # Used by Steam Auth
+            - STEAM_API_KEY=abc123 # Your Steam API Key
+
+        # I recommend using Traefik to reverse proxy this for you.
