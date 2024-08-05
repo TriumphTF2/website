@@ -3,7 +3,7 @@ name: Build Docker Image
 on:
     push:
         branches: [ "main" ]
-        paths-ignore: [ "README.md", "LICENSE", "CONTRIBUTING.md", ".github/**" ]
+        paths-ignore: [ "README.md", "LICENSE", "CONTRIBUTING.md", ".github/**", "**.example", ".gitignore", ".dockerignore" ]
 
 env:
   REGISTRY: ghcr.io
