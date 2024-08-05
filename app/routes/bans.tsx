@@ -1,10 +1,12 @@
-import type { MetaFunction } from "@remix-run/react";
+import { useLoaderData, type MetaFunction } from "@remix-run/react";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
 import { Separator } from "~/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
-
+import { themeSessionResolver } from "~/sessions.server";
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { ThemeProvider } from "remix-themes";
 
 export const meta: MetaFunction = () => {
     return [
@@ -12,6 +14,13 @@ export const meta: MetaFunction = () => {
         { name: "description", content: "TriumphTF2 Bans Page" },
     ];
 };
+
+export async function loader({ request }: LoaderFunctionArgs) {
+    const { getTheme } = await themeSessionResolver(request)
+    return {
+        theme: getTheme(),
+    }
+}
 
 export interface BanProps {
     bid: number;
@@ -34,6 +43,7 @@ export interface BanProps {
 }
 
 export default function Bans() {
+    const data = useLoaderData<typeof loader>();
     const [clickedRow, setClickedRow] = React.useState<BanProps | null>(null);
     const handleRowClick = (ban: BanProps) => {
         return () => {
@@ -82,24 +92,25 @@ export default function Bans() {
         }
     }
     return (
+        <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
         <div>
             <div className="container mx-auto">
-                <h1 className="text-4xl font-bold">TriumphTF2 Bans</h1>
+                <h1 className="text-4xl font-bold text-primary dark:text-secondary">TriumphTF2 Bans</h1>
                 <div className='flex gap-8'>
                     <div className="flex-1">
                         <Table>
                             <TableHeader className="bg-primary text-white font-bold">
                                 <TableRow className="hover:bg-primary">
-                                    <TableHead className="text-white font-bold uppercase">Date/Time</TableHead>
-                                    <TableHead className="text-white font-bold uppercase">Player</TableHead>
-                                    <TableHead className="text-white font-bold uppercase">Length</TableHead>
+                                    <TableHead className="text-primary-foreground font-bold uppercase">Date/Time</TableHead>
+                                    <TableHead className="text-primary-foreground font-bold uppercase">Player</TableHead>
+                                    <TableHead className="text-primary-foreground font-bold uppercase">Length</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {bans.length > 0 && bans.map((ban, index) => (
                                     <TableRow key={ban.bid} onClick={handleRowClick(ban)} className={`cursor-pointer ${index % 2 === 0 ? 'bg-muted' : 'bg-background'} hover:bg-primary-foreground`}>
-                                        <TableCell>{timestampToDateTime(ban.created)}</TableCell>
-                                        <TableCell>{ban.name}</TableCell>
+                                        <TableCell className="text-primary">{timestampToDateTime(ban.created)}</TableCell>
+                                        <TableCell className="text-primary">{ban.name}</TableCell>
                                         <TableCell className={`${
                                             ban.RemovedType === null && ban.length > 0 ? 'text-yellow-500' :
                                                 ban.RemovedType === null && ban.length === 0 ? 'text-red-500' :
@@ -121,19 +132,19 @@ export default function Bans() {
                                     <AvatarFallback>{clickedRow.name.charAt(0).toUpperCase()}</AvatarFallback>
                                 </Avatar>
                                 <div>
-                                    <div className="font-bold text-lg">{clickedRow.name}</div>
+                                    <div className="text-primary font-bold text-lg">{clickedRow.name}</div>
                                     <div className="text-xs text-muted-foreground">Banned by {'Adminnamehere'}</div>
                                 </div>
                             </div>
                             <Separator className="my-4"/>
                             <div className="space-y-2">
                                 <div>
-                                    <div className="text-sm font-medium">Ban Length:</div>
-                                    <div>{lengthToHumanReadable(clickedRow.length === 0 ? 0 : clickedRow.ends - clickedRow.created)}</div>
+                                    <div className="text-secondary-foreground text-sm font-medium">Ban Length:</div>
+                                    <div className="text-primary">{lengthToHumanReadable(clickedRow.length === 0 ? 0 : clickedRow.ends - clickedRow.created)}</div>
                                 </div>
                                 <div>
-                                    <div className="text-sm font-medium">Ban Status:</div>
-                                    <div>{
+                                    <div className="text-secondary-foreground text-sm font-medium">Ban Status:</div>
+                                    <div className="text-primary">{
                                         clickedRow.RemovedType === 'E' ? 'Expired' :
                                         clickedRow.RemovedType === 'U' ? 'Unbanned' :
                                         clickedRow.length === 0 ? 'Permanent' :
@@ -141,8 +152,8 @@ export default function Bans() {
                                         'Active'}</div>
                                 </div>
                                 <div>
-                                    <div className="text-sm font-medium">Aliases:</div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="text-secondary-foreground text-sm font-medium">Aliases:</div>
+                                    <div className="text-secondary flex flex-wrap gap-2">
                                         <Badge variant='outline'>Alias1</Badge>
                                         <Badge variant='outline'>Alias2</Badge>
                                     </div>
@@ -153,5 +164,6 @@ export default function Bans() {
                 </div>
             </div>
         </div>
+        </ThemeProvider>
     );
 }
