@@ -1,8 +1,10 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Await, defer, useLoaderData } from "@remix-run/react";
 import { GameDig, Player, QueryResult } from "gamedig";
 import { Suspense } from "react";
 import { Server, ServerSkeleton } from "~/components/Server";
+import { themeSessionResolver } from "~/sessions.server";
+import { ThemeProvider } from "remix-themes";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,7 +13,8 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
+export async function loader({request}: LoaderFunctionArgs) {
+  const { getTheme } = await themeSessionResolver(request)
   const triumph1 = GameDig.query({
     type: "teamfortress2",
     host: "triumphtf2.com",
@@ -38,11 +41,12 @@ export async function loader() {
     triumph1: triumph1,
     triumph2: triumph2,
     triumphNA: triumphNA,
+    theme: getTheme()
   });
 }
 
 export default function Index() {
-  const { triumph1, triumph2, triumphNA } = useLoaderData<typeof loader>();
+  const { triumph1, triumph2, triumphNA, theme } = useLoaderData<typeof loader>();
   const errorProps = {} as QueryResult;
   errorProps.name = "Server Offline";
   errorProps.numplayers = 0;
@@ -50,9 +54,10 @@ export default function Index() {
   errorProps.map = "Unknown";
   errorProps.players = [] as Player[];
   return (
+    <ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
     <div>
       <div className="container mx-auto">
-        <h1 className="text-4xl font-bold">TriumphTF2 Servers</h1>
+        <h1 className="text-4xl font-bold text-primary dark:text-secondary">TriumphTF2 Servers</h1>
 
         <div className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 justify-center gap-2">
           <Suspense fallback={<ServerSkeleton />}>
@@ -79,5 +84,6 @@ export default function Index() {
         </div>
       </div>
     </div>
+    </ThemeProvider>
   );
 }
