@@ -1,7 +1,9 @@
 # TriumphTF2 Website
-## Powered by Remix and GameDig
+## Powered by these things
 - 📖 [Remix docs](https://remix.run/docs)
 - 🎮 [GameDig](https://github.com/gamedig/node-gamedig)
+- 🎨 [Tailwind CSS](https://tailwindcss.com/)
+- 🔒 [remix-auth-steam](https://github.com/Andreychik32/remix-auth-steam)
 
 ## Getting Started
 
@@ -24,7 +26,6 @@ Note - For steam logins you need an API key. You can get one [here](https://stea
 ## Env Variables
 
 ```shellscript
-# .env
 # Required for steam login
 STEAM_API_KEY=your_steam_api_key
 # Informs the application where to redirect after login. NO TRAILING SLASH
@@ -33,29 +34,14 @@ BASE_URL=http://localhost:5173
 
 ## Deployment
 
-First, build your app for production:
+Build the Dockerfile
 
-```sh
-npm run build
+```shellscript
+docker build -t ghcr.io/triumph-tf2/website:latest .
 ```
 
-Then run the app in production mode:
+You should probably use a different tag than latest. You might also want to tweak the docker-compose.yml file to your liking. An example is included [here](docker-compose.yml.example).
 
-```sh
-npm start
-```
+## License
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+Haven't decided yet.
