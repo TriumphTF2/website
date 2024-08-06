@@ -31,7 +31,7 @@ export function App() {
   const [theme] = useTheme();
   const pages = [
     { href: "/", label: "Home" },
-    { href: "//bans.triumphtf2.com", label: "Bans" },
+    { href: "bans", label: "Bans" },
     { href: "//leaderboards.triumphtf2.com", label: "Leaderboards" },
   ]
   return (

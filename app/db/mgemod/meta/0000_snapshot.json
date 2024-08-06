@@ -1,0 +1,372 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "connections": {
+      "name": "connections",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(100) unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "steamid": {
+          "autoincrement": false,
+          "name": "steamid",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nickname": {
+          "autoincrement": false,
+          "name": "nickname",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ipaddress": {
+          "autoincrement": false,
+          "name": "ipaddress",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "country": {
+          "autoincrement": false,
+          "name": "country",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "profile": {
+          "autoincrement": false,
+          "name": "profile",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "server": {
+          "autoincrement": false,
+          "name": "server",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "connectedat": {
+          "autoincrement": false,
+          "name": "connectedat",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "disconnectedat": {
+          "autoincrement": false,
+          "name": "disconnectedat",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "mgemod_duels": {
+      "name": "mgemod_duels",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winner": {
+          "autoincrement": false,
+          "name": "winner",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "loser": {
+          "autoincrement": false,
+          "name": "loser",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winnerscore": {
+          "autoincrement": false,
+          "name": "winnerscore",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "loserscore": {
+          "autoincrement": false,
+          "name": "loserscore",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winlimit": {
+          "autoincrement": false,
+          "name": "winlimit",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gametime": {
+          "autoincrement": false,
+          "name": "gametime",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mapname": {
+          "autoincrement": false,
+          "name": "mapname",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arenaname": {
+          "autoincrement": false,
+          "name": "arenaname",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "mgemod_duels_2v2": {
+      "name": "mgemod_duels_2v2",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winner": {
+          "autoincrement": false,
+          "name": "winner",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winner2": {
+          "autoincrement": false,
+          "name": "winner2",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "loser": {
+          "autoincrement": false,
+          "name": "loser",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "loser2": {
+          "autoincrement": false,
+          "name": "loser2",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winnerscore": {
+          "autoincrement": false,
+          "name": "winnerscore",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "loserscore": {
+          "autoincrement": false,
+          "name": "loserscore",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "winlimit": {
+          "autoincrement": false,
+          "name": "winlimit",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gametime": {
+          "autoincrement": false,
+          "name": "gametime",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mapname": {
+          "autoincrement": false,
+          "name": "mapname",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "arenaname": {
+          "autoincrement": false,
+          "name": "arenaname",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "mgemod_stats": {
+      "name": "mgemod_stats",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "autoincrement": false,
+          "name": "rating",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "steamid": {
+          "autoincrement": false,
+          "name": "steamid",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "wins": {
+          "autoincrement": false,
+          "name": "wins",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "losses": {
+          "autoincrement": false,
+          "name": "losses",
+          "type": "int(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastplayed": {
+          "autoincrement": false,
+          "name": "lastplayed",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hitblip": {
+          "autoincrement": false,
+          "name": "hitblip",
+          "type": "int(2)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VPNBlock": {
+      "name": "VPNBlock",
+      "columns": {
+        "playername": {
+          "autoincrement": false,
+          "name": "playername",
+          "type": "char(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "steamid": {
+          "autoincrement": false,
+          "name": "steamid",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastupdated": {
+          "autoincrement": false,
+          "name": "lastupdated",
+          "type": "int(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "autoincrement": false,
+          "name": "ip",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "proxy": {
+          "autoincrement": false,
+          "name": "proxy",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VPNBlock_wl": {
+      "name": "VPNBlock_wl",
+      "columns": {
+        "steamid": {
+          "autoincrement": false,
+          "name": "steamid",
+          "type": "char(32)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}

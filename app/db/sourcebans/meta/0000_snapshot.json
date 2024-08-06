@@ -1,0 +1,1332 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "sb_admins": {
+      "name": "sb_admins",
+      "columns": {
+        "aid": {
+          "autoincrement": true,
+          "name": "aid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user": {
+          "autoincrement": false,
+          "name": "user",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "authid": {
+          "default": "''''",
+          "autoincrement": false,
+          "name": "authid",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gid": {
+          "autoincrement": false,
+          "name": "gid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "validate": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "validate",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "extraflags": {
+          "autoincrement": false,
+          "name": "extraflags",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "immunity": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "immunity",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "srv_group": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "srv_group",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "srv_flags": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "srv_flags",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "srv_password": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "srv_password",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastvisit": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "lastvisit",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "user": {
+          "name": "user",
+          "columns": [
+            "user"
+          ]
+        }
+      }
+    },
+    "sb_admins_servers_groups": {
+      "name": "sb_admins_servers_groups",
+      "columns": {
+        "admin_id": {
+          "autoincrement": false,
+          "name": "admin_id",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "group_id": {
+          "autoincrement": false,
+          "name": "group_id",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "srv_group_id": {
+          "autoincrement": false,
+          "name": "srv_group_id",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "server_id": {
+          "autoincrement": false,
+          "name": "server_id",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_banlog": {
+      "name": "sb_banlog",
+      "columns": {
+        "sid": {
+          "autoincrement": false,
+          "name": "sid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "time": {
+          "autoincrement": false,
+          "name": "time",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bid": {
+          "autoincrement": false,
+          "name": "bid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_bans": {
+      "name": "sb_bans",
+      "columns": {
+        "bid": {
+          "autoincrement": true,
+          "name": "bid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "ip",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "authid": {
+          "default": "''''",
+          "autoincrement": false,
+          "name": "authid",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "default": "''unnamed''",
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "created",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ends": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "ends",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "length": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "length",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "autoincrement": false,
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "aid": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "aid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "adminIp": {
+          "default": "''''",
+          "autoincrement": false,
+          "name": "adminIp",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sid": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "sid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "country": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "country",
+          "type": "varchar(4)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RemovedBy": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "RemovedBy",
+          "type": "int(8)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RemoveType": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "RemoveType",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RemovedOn": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "RemovedOn",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "type",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ureason": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "ureason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "sid": {
+          "name": "sid",
+          "columns": [
+            "sid"
+          ],
+          "isUnique": false
+        },
+        "type_authid": {
+          "name": "type_authid",
+          "columns": [
+            "type",
+            "authid"
+          ],
+          "isUnique": false
+        },
+        "type_ip": {
+          "name": "type_ip",
+          "columns": [
+            "type",
+            "ip"
+          ],
+          "isUnique": false
+        },
+        "reason": {
+          "name": "reason",
+          "columns": [
+            "reason"
+          ],
+          "isUnique": false
+        },
+        "authid_2": {
+          "name": "authid_2",
+          "columns": [
+            "authid"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_comments": {
+      "name": "sb_comments",
+      "columns": {
+        "cid": {
+          "autoincrement": true,
+          "name": "cid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bid": {
+          "autoincrement": false,
+          "name": "bid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "aid": {
+          "autoincrement": false,
+          "name": "aid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "commenttxt": {
+          "autoincrement": false,
+          "name": "commenttxt",
+          "type": "longtext",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "added": {
+          "autoincrement": false,
+          "name": "added",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "editaid": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "editaid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "edittime": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "edittime",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "cid": {
+          "name": "cid",
+          "columns": [
+            "cid"
+          ],
+          "isUnique": false
+        },
+        "commenttxt": {
+          "name": "commenttxt",
+          "columns": [
+            "commenttxt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_comms": {
+      "name": "sb_comms",
+      "columns": {
+        "bid": {
+          "autoincrement": true,
+          "name": "bid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "authid": {
+          "autoincrement": false,
+          "name": "authid",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "default": "''unnamed''",
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "created",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ends": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "ends",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "length": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "length",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "autoincrement": false,
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "aid": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "aid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "adminIp": {
+          "default": "''''",
+          "autoincrement": false,
+          "name": "adminIp",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sid": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "sid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "RemovedBy": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "RemovedBy",
+          "type": "int(8)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RemoveType": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "RemoveType",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RemovedOn": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "RemovedOn",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "type",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ureason": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "ureason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "sid": {
+          "name": "sid",
+          "columns": [
+            "sid"
+          ],
+          "isUnique": false
+        },
+        "type": {
+          "name": "type",
+          "columns": [
+            "type"
+          ],
+          "isUnique": false
+        },
+        "RemoveType": {
+          "name": "RemoveType",
+          "columns": [
+            "RemoveType"
+          ],
+          "isUnique": false
+        },
+        "authid": {
+          "name": "authid",
+          "columns": [
+            "authid"
+          ],
+          "isUnique": false
+        },
+        "created": {
+          "name": "created",
+          "columns": [
+            "created"
+          ],
+          "isUnique": false
+        },
+        "aid": {
+          "name": "aid",
+          "columns": [
+            "aid"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_demos": {
+      "name": "sb_demos",
+      "columns": {
+        "demid": {
+          "autoincrement": false,
+          "name": "demid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "demtype": {
+          "autoincrement": false,
+          "name": "demtype",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "filename": {
+          "autoincrement": false,
+          "name": "filename",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "origname": {
+          "autoincrement": false,
+          "name": "origname",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_groups": {
+      "name": "sb_groups",
+      "columns": {
+        "gid": {
+          "autoincrement": true,
+          "name": "gid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "type",
+          "type": "smallint(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "default": "''unnamed''",
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "flags": {
+          "autoincrement": false,
+          "name": "flags",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_log": {
+      "name": "sb_log",
+      "columns": {
+        "lid": {
+          "autoincrement": true,
+          "name": "lid",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "enum('m','w','e')",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "varchar(512)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "message": {
+          "autoincrement": false,
+          "name": "message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "function": {
+          "autoincrement": false,
+          "name": "function",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "query": {
+          "autoincrement": false,
+          "name": "query",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "aid": {
+          "autoincrement": false,
+          "name": "aid",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "host": {
+          "autoincrement": false,
+          "name": "host",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created": {
+          "autoincrement": false,
+          "name": "created",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_login_tokens": {
+      "name": "sb_login_tokens",
+      "columns": {
+        "jti": {
+          "autoincrement": false,
+          "name": "jti",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "secret": {
+          "autoincrement": false,
+          "name": "secret",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastAccessed": {
+          "autoincrement": false,
+          "name": "lastAccessed",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "secret": {
+          "name": "secret",
+          "columns": [
+            "secret"
+          ]
+        }
+      }
+    },
+    "sb_mods": {
+      "name": "sb_mods",
+      "columns": {
+        "mid": {
+          "autoincrement": true,
+          "name": "mid",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "icon": {
+          "autoincrement": false,
+          "name": "icon",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modfolder": {
+          "autoincrement": false,
+          "name": "modfolder",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "steam_universe": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "steam_universe",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enabled": {
+          "default": 1,
+          "autoincrement": false,
+          "name": "enabled",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "steam_universe": {
+          "name": "steam_universe",
+          "columns": [
+            "steam_universe"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "modfolder": {
+          "name": "modfolder",
+          "columns": [
+            "modfolder"
+          ]
+        },
+        "name": {
+          "name": "name",
+          "columns": [
+            "name"
+          ]
+        }
+      }
+    },
+    "sb_overrides": {
+      "name": "sb_overrides",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "enum('command','group')",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "flags": {
+          "autoincrement": false,
+          "name": "flags",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "type": {
+          "name": "type",
+          "columns": [
+            "type",
+            "name"
+          ]
+        }
+      }
+    },
+    "sb_protests": {
+      "name": "sb_protests",
+      "columns": {
+        "pid": {
+          "autoincrement": true,
+          "name": "pid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bid": {
+          "autoincrement": false,
+          "name": "bid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "datesubmitted": {
+          "autoincrement": false,
+          "name": "datesubmitted",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "autoincrement": false,
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "archiv": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "archiv",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "archivedby": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "archivedby",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pip": {
+          "autoincrement": false,
+          "name": "pip",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "bid": {
+          "name": "bid",
+          "columns": [
+            "bid"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_servers": {
+      "name": "sb_servers",
+      "columns": {
+        "sid": {
+          "autoincrement": true,
+          "name": "sid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "autoincrement": false,
+          "name": "ip",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "port": {
+          "autoincrement": false,
+          "name": "port",
+          "type": "int(5)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rcon": {
+          "autoincrement": false,
+          "name": "rcon",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modid": {
+          "autoincrement": false,
+          "name": "modid",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enabled": {
+          "default": 1,
+          "autoincrement": false,
+          "name": "enabled",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "ip": {
+          "name": "ip",
+          "columns": [
+            "ip",
+            "port"
+          ]
+        }
+      }
+    },
+    "sb_servers_groups": {
+      "name": "sb_servers_groups",
+      "columns": {
+        "server_id": {
+          "autoincrement": false,
+          "name": "server_id",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "group_id": {
+          "autoincrement": false,
+          "name": "group_id",
+          "type": "int(10)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_settings": {
+      "name": "sb_settings",
+      "columns": {
+        "setting": {
+          "autoincrement": false,
+          "name": "setting",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "setting": {
+          "name": "setting",
+          "columns": [
+            "setting"
+          ]
+        }
+      }
+    },
+    "sb_srvgroups": {
+      "name": "sb_srvgroups",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(10) unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "flags": {
+          "autoincrement": false,
+          "name": "flags",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "immunity": {
+          "autoincrement": false,
+          "name": "immunity",
+          "type": "int(10) unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(120)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "groups_immune": {
+          "autoincrement": false,
+          "name": "groups_immune",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "sb_srvgroups_overrides": {
+      "name": "sb_srvgroups_overrides",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "group_id": {
+          "autoincrement": false,
+          "name": "group_id",
+          "type": "smallint(5) unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "enum('command','group')",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "access": {
+          "autoincrement": false,
+          "name": "access",
+          "type": "enum('allow','deny')",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "group_id": {
+          "name": "group_id",
+          "columns": [
+            "group_id",
+            "type",
+            "name"
+          ]
+        }
+      }
+    },
+    "sb_submissions": {
+      "name": "sb_submissions",
+      "columns": {
+        "subid": {
+          "autoincrement": true,
+          "name": "subid",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "submitted": {
+          "autoincrement": false,
+          "name": "submitted",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ModID": {
+          "autoincrement": false,
+          "name": "ModID",
+          "type": "int(6)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "SteamId": {
+          "default": "''unnamed''",
+          "autoincrement": false,
+          "name": "SteamId",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "autoincrement": false,
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "autoincrement": false,
+          "name": "ip",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "subname": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "subname",
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sip": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "sip",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "archiv": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "archiv",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "archivedby": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "archivedby",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "server": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "server",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
