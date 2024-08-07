@@ -48,17 +48,22 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 
     const handleAuth = () => {
         if (props.user) {
-            navigate('/auth/logout');
+            navigate('/dashboard');
             return;
         }
         navigate('/auth/steam');
         return
     }
 
+    const logout = () => {
+        navigate('/auth/logout');
+        return;
+    }
+
     return (
         // JSX markup for your component goes here
         <ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
-        <nav className={`${clsx(theme)} bg-primary-foreground dark:bg-secondary-foreground border dark:border-secondary-foreground shadow`}>
+        <nav className={`${clsx(theme)} bg-primary-foreground dark:bg-secondary-foreground border dark:border-secondary-foreground shadow sticky top-0 z-50`}>
             <div className='container flex flex-wrap justify-between items-center mx-auto'>
                 <a href="/" className='flex items-center flex-grow'>
                     <span className="self-center text-xl font-semibold whitespace-nowrap text-primary dark:text-secondary">
@@ -114,6 +119,13 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
                                 {props.user ? props.user.nickname : 'Login'}
                             </button>
                         </li>
+                        { props.user && (
+                        <li>
+                            <button onClick={logout} type="button" className='sm:w-full sm:text-left block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'>
+                                Logout
+                            </button>
+                        </li>
+                    )}
                     </ul>
                 </div>
 

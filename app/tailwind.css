@@ -61,6 +61,11 @@
     }
   }
 
+.ban-card-grid {
+  display: grid;
+  grid-template: "a a" 100% "b c" 100% / 1fr 4fr;
+}
+
 .server-placeholder {
   font-size: 0 !important;
   line-height: 0 !important;

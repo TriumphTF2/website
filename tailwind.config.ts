@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -67,6 +67,30 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        appear: {
+          "0%, 99%": {
+            height: "0",
+            width: "0",
+            opacity: "0",
+          },
+          "100%": {
+            height: "auto",
+            width: "auto",
+            opacity: "1",
+          },
+        },
+        disappear: {
+          "0%, 99%": {
+            height: "auto",
+            width: "auto",
+            opacity: "1",
+          },
+          "100%": {
+            height: "0",
+            width: "0",
+            opacity: "0",
+          },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://sly-cli.fly.dev/registry/config.json",
+  "libraries": [
+    {
+      "name": "jacobparis/ui",
+      "directory": "./app/components",
+      "postinstall": [],
+      "transformers": []
+    }
+  ]
+}
