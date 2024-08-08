@@ -137,6 +137,41 @@
     }
   }
 
+
+
+}
+
+.marquee {
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+span.marquee {
+  display: inline-block;
+  animation: marquee 10s linear infinite;
+  animation-delay: 2s
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(0, 0);
+  }
+  45% {
+    transform: translate(-25%, 0);
+  }
+  55% {
+    transform: translate(-25%, 0);
+  }
+  90% {
+    transform: translate(0%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes fading {
