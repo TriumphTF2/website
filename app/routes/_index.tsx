@@ -56,8 +56,8 @@ export default function Index() {
   return (
     <ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
     <div>
-      <div className="container mx-auto">
-        <h1 className="text-4xl font-bold text-primary dark:text-secondary">TriumphTF2 Servers</h1>
+      <div className="container mx-auto p-4">
+        {/* <h1 className="text-4xl font-bold text-primary-foreground dark:text-secondary-foreground">TriumphTF2 Servers</h1> */}
 
         <div className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 justify-center gap-2">
           <Suspense fallback={<ServerSkeleton />}>

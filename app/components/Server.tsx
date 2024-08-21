@@ -5,20 +5,20 @@ export const Server: React.FC<QueryResult> = (props) => {
     // Implement your component logic here
     const getColorForPlayercount = (num: number, max: number) => {
         if(max === 0) {
-            return 'text-gray-500'; // Escape divide by 0
+            return 'dark:text-gray-600 text-gray-400'; // Escape divide by 0
         }
         if(num === 0) {
-            return 'text-blue-500'; // Escape divide by 0
+            return 'dark:text-blue-600 text-blue-400'; // Escape divide by 0
         }
         const factor = num / max;
         if (factor > 0.75) {
-            return 'text-red-500';
+            return 'dark:text-red-600 text-red-400';
         } else if (factor > 0.5) {
-            return 'text-yellow-500';
+            return 'dark:text-yellow-600 text-red-400';
         } else if (factor > 0.25) {
-            return 'text-green-500';
+            return 'dark:text-green-600 text-green-400';
         } else {
-            return 'text-blue-500';
+            return 'dark:text-blue-600 text-blue-400';
         }
     };
     const secondsToHumanReadable = (seconds: number | undefined) => {
@@ -42,22 +42,25 @@ export const Server: React.FC<QueryResult> = (props) => {
 
         return `${formattedMinutes}:${formattedSeconds}`;
     }
-    const connectTo = (connect: string | undefined) => {
+    const connectTo = (props: QueryResult) => {
         return () => {
-            if (connect) {
-                window.prompt(`We are about to use the following Steam URI to connect to the server
+            if (props.numplayers == props.maxplayers && props.maxplayers == 0) {
+                return;
+            }
+            if (props.connect) {
+//                 window.prompt(`We are about to use the following Steam URI to connect to the server
 
-steam://connect/${connect}
+// steam://connect/${props.connect}
 
-Your browser may ask you to allow us to do this.
-If it does not allow this, here is the connect string.`, `connect ${connect};`);
-                window.open(`steam://connect/${connect}`);
+// Your browser may ask you to allow us to do this.
+// If it does not allow this, here is the connect string.`, `connect ${props.connect};`);
+                window.open(`steam://connect/${props.connect}`);
             }
         }
     }
     return (
-        <div className='rounded-lg border dark:bg-gray-700 bg-gray-300 text-black dark:text-white font-bold sm:shadow w-full max-w-md'>
-            <div className="flex-col space-y-1.5 p-6 dark:bg-gray-300 bg-gray-700 dark:text-black text-white px-4 py-3 flex items-center justify-between">
+        <div className='rounded-lg border border-primary dark:border-secondary bg-primary dark:bg-card text-primary-foreground dark:text-primary font-bold sm:shadow w-full max-w-md'>
+            <div className="flex-col space-y-1.5 p-6 bg-card-foreground dark:bg-muted dark:text-black text-white px-4 py-3 flex items-center justify-between">
                 <div className='flex items-center gap-2'>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -76,25 +79,29 @@ If it does not allow this, here is the connect string.`, `connect ${connect};`);
                         <line x1="6" x2="6.01" y1="6" y2="6"></line>
                         <line x1="6" x2="6.01" y1="18" y2="18"></line>
                     </svg>
-                    <div className='text-lg font-bold'>{props.name || 'SERVERNAME'}</div>
+                    <div className='font-bold text-ellipsis overflow-clip text-nowrap max-w-xs'>{props.name || 'SERVERNAME'}</div>
                 </div>
                 <div className='text-sm text-gray-500'>
                     <span className='font-medium'>Map: {props.map || 'MAPNAME'}</span>
                 </div>
                 <div className='mt-4 text-sm text-white hidden sm:block'>
-                    <button onClick={connectTo(props.connect)} className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded'>
-                        Connect
+                    <button onClick={connectTo(props)} className={`${props.maxplayers == 0 ? 'bg-gray-500 hover:bg-gray-500 cursor-default' : 'bg-blue-500 hover:bg-blue-600'} text-white font-bold py-2 px-4 rounded`}>
+                        {
+                            props.numplayers == props.maxplayers && props.maxplayers == 0 ? 'Offline' :
+                            props.numplayers == props.maxplayers && props.maxplayers != 0 ? 'Full' :
+                            'Connect'
+                        }
                     </button>
                 </div>
             </div>
-            <div className='p-4'>
-                <div className='flex items-center justify-between mb-4'>
+            <div className='p-4 flex flex-col h-full'>
+                <div className='flex items-center justify-between mb-4 h-min flex-shrink'>
                     <div className='text-2xl font-bold'>
                         <span className={getColorForPlayercount(props.numplayers || 0,props.maxplayers || 0)}>{props.numplayers || 0}</span> / {props.maxplayers || 0}
                     </div>
                     <div className='text-sm text-gray-500'>Players Online</div>
                 </div>
-                <div className='max-h-52 overflow-y-auto'>
+                <div className='max-h-52 overflow-y-auto flex-grow'>
                     <div className='space-y-1 px-3.5'>
                         {props.players?.map((player) => (
                             <div key={player.name} className='flex items-center justify-between text-sm'>
@@ -110,6 +117,9 @@ If it does not allow this, here is the connect string.`, `connect ${connect};`);
                             </div>
                         ))}
                     </div>
+                </div>
+                <div className='text-center align-bottom bottom-0 h-min flex-shrink'>
+                    <span className='text-sm text-muted-foreground connect-string'>{props.connect ? `connect ${props.connect};` : ''}</span>
                 </div>
             </div>
         </div>
@@ -127,8 +137,8 @@ export const ServerSkeleton: React.FC = () => {
         players.push(randomUsername())
     }
     return (
-        <div className='server-placeholder rounded-lg border dark:bg-gray-700 bg-gray-300 text-black dark:text-white font-bold sm:shadow w-full max-w-md'>
-            <div className="flex-col space-y-1.5 p-6 dark:bg-gray-300 bg-gray-700 dark:text-black text-white px-4 py-3 flex items-center justify-between">
+        <div className='server-placeholder rounded-lg border border-primary dark:border-secondary bg-primary dark:bg-card text-primary-foreground dark:text-primary font-bold sm:shadow w-full max-w-md'>
+            <div className="flex-col space-y-1.5 p-6 bg-card-foreground dark:bg-muted dark:text-black text-white px-4 py-3 flex items-center justify-between">
                 <div className='flex items-center gap-2'>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -147,21 +157,21 @@ export const ServerSkeleton: React.FC = () => {
                         <line x1="6" x2="6.01" y1="6" y2="6"></line>
                         <line x1="6" x2="6.01" y1="18" y2="18"></line>
                     </svg>
-                    <div className='text-lg font-bold'><span className='header'></span></div>
+                    <div className={`text-lg font-bold`}><span className='header  bg-secondary dark:bg-primary'></span></div>
                 </div>
                 <div className='text-sm text-gray-500'>
-                    <span className='font-medium'>Map: <span className='text'></span></span>
+                    <span className='font-medium'>Map: <span className='text  bg-secondary dark:bg-primary'></span></span>
                 </div>
                 <div className='mt-4 text-sm text-white hidden sm:block'>
                     <button disabled className='bg-gray-500 text-white font-bold py-2 px-4 rounded'>
-                        <span className='text'></span>
+                        <span className='text  bg-secondary dark:bg-primary'></span>
                     </button>
                 </div>
             </div>
             <div className='p-4'>
                 <div className='flex items-center justify-between mb-4'>
                     <div className='font-bold'>
-                        <span className='number'></span>
+                        <span className='number bg-secondary dark:bg-primary'></span>
                     </div>
                     <div className='text-sm text-gray-500'>Players Online</div>
                 </div>
@@ -175,7 +185,7 @@ export const ServerSkeleton: React.FC = () => {
                                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z' />
                                         </svg>
                                     </span> */}
-                                    <div><span className='text' style={{ minWidth: `${Math.floor(Math.random() * (125 - 80 + 1)) + 80}px` }}></span></div>
+                                    <div><span className='text bg-secondary dark:bg-primary' style={{ minWidth: `${Math.floor(Math.random() * (125 - 80 + 1)) + 80}px` }}></span></div>
                                 </div>
                                 <div className='text-gray-500 flex items-center'><span className='text-short'></span></div>
                             </div>

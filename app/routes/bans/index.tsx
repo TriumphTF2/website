@@ -102,7 +102,7 @@ export default function Bans() {
         <ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
             <div>
                 <div className="container mx-auto py-4">
-                    <h1 className="text-4xl font-bold text-primary dark:text-secondary py-4"><Link to="https://bans.triumphtf2.com/">Click here to go to the classic Bans page</Link></h1>
+                    <h1 className="text-4xl font-bold dark:text-primary text-secondary py-4"><Link to="https://bans.triumphtf2.com/">Click here to go to the classic Bans page</Link></h1>
                     <div className='flex gap-8'>
                         <div className="flex-1">
                             <Table className="">

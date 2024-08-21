@@ -14,6 +14,7 @@ import { themeSessionResolver } from "./sessions.server";
 
 import { Navbar } from "~/components/Navbar";
 import { LoaderFunctionArgs } from "@remix-run/node";
+// import { Stars, defaultStars } from "~/components/Stars";
 
 import { authenticator } from "~/auth.server";
 
@@ -32,10 +33,11 @@ export function App() {
   const pages = [
     { href: "/", label: "Home" },
     { href: "bans", label: "Bans" },
-    { href: "//leaderboards.triumphtf2.com", label: "Leaderboards" },
+    // { href: "leaderboard", label: "Leaderboards" },
+    { href: "//discord.com/invite/g53the6dfM", label: "Discord", target:"_blank" },
   ]
   return (
-    <html lang="en" className={clsx(theme)}>
+    <html lang="en" data-theme={clsx(theme)} className={clsx(theme) + ''}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,8 +45,9 @@ export function App() {
         <PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
         <Links />
       </head>
-      <body className="bg-background dark:bg-foreground">
+      <body className={`${clsx(theme)} bg-zinc-950 text-primary-foreground dark:bg-zinc-50 dark:text-secondary-foreground`}>
         <Navbar siteTitle="TriumphTF2" items={pages} user={data.auth} />
+        {/* <Stars {...defaultStars} /> */}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
