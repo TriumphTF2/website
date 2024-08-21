@@ -188,6 +188,9 @@ span.marquee {
   }
 }
 
+.max-h-table {
+  height: 40rem;
+}
 
 
 @media (min-width: 768px) {

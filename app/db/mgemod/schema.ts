@@ -1,4 +1,4 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, int, varchar, char, tinyint } from "drizzle-orm/mysql-core"
+import { mysqlTable, mysqlSchema, AnyMySqlColumn, int, varchar, char, tinyint, mysqlView } from "drizzle-orm/mysql-core"
 import { sql } from "drizzle-orm"
 
 export const connections = mysqlTable("connections", {
@@ -49,6 +49,18 @@ export const mgemodStats = mysqlTable("mgemod_stats", {
 	lastplayed: int("lastplayed").notNull(),
 	hitblip: int("hitblip").notNull(),
 });
+
+export const leaderboard = mysqlView("leaderboard", {
+	id: int("id").autoincrement().notNull(),
+	rating: int("rating").notNull(),
+	steamid: varchar("steamid", { length: 32 }).notNull(),
+	name: varchar("name", { length: 64 }).notNull(),
+	wins: int("wins").notNull(),
+	losses: int("losses").notNull(),
+	lastplayed: int("lastplayed").notNull(),
+	hitblip: int("hitblip").notNull(),
+	rank: int("rank").notNull(),
+}).existing();
 
 export const vpnBlock = mysqlTable("VPNBlock", {
 	playername: char("playername", { length: 128 }).notNull(),
