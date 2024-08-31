@@ -1,4 +1,7 @@
 # TriumphTF2 Website
+![GitHub branch check runs](https://img.shields.io/github/check-runs/triumphtf2/website/main?label=build) ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftriumphtf2.com)
+
+
 ## Powered by these things
 - 📖 [Remix docs](https://remix.run/docs)
 - 🎮 [GameDig](https://github.com/gamedig/node-gamedig)
